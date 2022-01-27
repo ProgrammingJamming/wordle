@@ -3,35 +3,45 @@ with open("dictionary.txt", "r", encoding = "utf-8") as f:
     text = f.read().lower()
     length = 5
 
-    chars = "aw"
+    chars = "floy"
 
     first = []
     second = []
     third = []
 
     # positively select for correct placement
-    word = " wha** "
+    word = "*o**y"
     for i in range(0,len(text)):
         p = True
+        
+        try:
+            if text[i-1].isalpha():
+                continue
+            if text[i+5].isalpha():
+                continue
+        except:
+            continue
+        
         for j in range(0, len(word)):
-            if word[j] == text[j+i]:
+            if word[j] == text[i+j]:
                 pass
-            elif word[j] == "*" and text[j+i].isalpha():
+            elif word[j] == "*" and text[i+j].isalpha():
                 pass
             else:
                 p = False
                 break
         if p:
-            first.append(text[i+1:i+len(word)-1])
+            first.append(text[i:i+len(word)])
 
     # negatively select against wrong placement
-    word = "*a*a*"
+    words = ["serai", "phon*", "m*mm*", "b*gg*", "r*wd*", "f*ll*"]
     for i in first:
         p = True
-        for j in range(0, len(i)):
-            if word[j] == i[j]:
-                p = False
-                break
+        for j in words:
+            for k in range(0, len(i)):
+                if j[k] == i[k]:
+                    p = False
+                    break
         if p:
             second.append(i)
             
